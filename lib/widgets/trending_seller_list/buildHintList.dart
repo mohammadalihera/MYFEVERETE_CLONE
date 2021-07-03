@@ -67,6 +67,21 @@ Widget buildHintList(List<TrendingSellersModel> seller) {
                   ),
                 ),
               ),
+              Positioned(
+                top: 5,
+                left: 5,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(25),
+                  child: Container(
+                    height: 50,
+                    width: 50,
+                    child: CachedNetworkImage(
+                      imageUrl: seller[i].sellerProfilePhoto,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         );
