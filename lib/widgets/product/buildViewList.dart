@@ -7,6 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 Widget buildViewList(List<ProductModel> products, int number) {
   List<ProductModel> showProduct = new List<ProductModel>();
+  DateTime now = DateTime.now();
   if (number == 3) {
     for (int i = 0; i < number; i++) {
       showProduct.add(products[i]);
@@ -79,7 +80,7 @@ Widget buildViewList(List<ProductModel> products, int number) {
                           ),
                           Container(
                             child: Text(
-                              showProduct[i].storyTime.toIso8601String(),
+                              postTime(showProduct[i].storyTime),
                               style: TextStyle(color: Colors.grey),
                             ),
                           ),
@@ -179,4 +180,20 @@ Widget buildViewList(List<ProductModel> products, int number) {
           );
         }),
   );
+}
+
+String postTime(DateTime post) {
+  DateTime now = DateTime.now();
+  final difference = now.difference(post).inMinutes;
+  var d = Duration(days: 0, hours: 0, minutes: difference);
+  String day = d.toString()[0];
+  String hour = d.toString()[2];
+  String min = d.toString()[4];
+  String postTime = day != 0
+      ? (day + ' ' + ' days')
+      : ' ' +
+          (hour != 0 ? hour + ' ' + 'hours' : ' ') +
+          (min != 0 ? min + ' ' + 'mins' : ' ');
+
+  return postTime;
 }
