@@ -20,17 +20,13 @@ Widget buildViewList(List<ProductModel> products, int number) {
     }
   }
   return Container(
-    height: number > 6
-        ? products.length * 305.0 + 200
-        : number > 2
-            ? 3 * 400.0
-            : 3 * 400.0,
+    height: number > 6 ? products.length * 305.0 + 200 : 3 * 383.5,
     child: new ListView.builder(
         itemCount: showProduct.length,
         physics: NeverScrollableScrollPhysics(),
         itemBuilder: (context, i) {
           return Card(
-            elevation: 5,
+            elevation: 7,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(13.0),
             ),
