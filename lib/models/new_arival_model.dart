@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final newArivalModel = newArivalModelFromJson(jsonString);
-
 import 'dart:convert';
 
 NewArivalModel newArivalModelFromJson(String str) =>

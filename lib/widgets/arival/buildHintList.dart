@@ -1,4 +1,5 @@
 import 'package:MyFeveretClone/models/new_arival_model.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 
@@ -28,21 +29,19 @@ Widget buildHintList(List<NewArivalModel> arivals) {
             width: 115,
             child: Column(
               children: <Widget>[
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10)),
-                    image: DecorationImage(
-                        image: NetworkImage(
-                          arivals[i].productImage,
-                        ),
-                        fit: BoxFit.cover),
-                  ),
-                  height: 110,
-                  width: 115,
-                  child: SizedBox(
-                    height: 0,
+                ClipRRect(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10)),
+                  child: Container(
+                    height: 110,
+                    width: 115,
+                    child: CachedNetworkImage(
+                      imageUrl: arivals[i].productImage,
+                      height: 110,
+                      width: 115,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
                 Container(

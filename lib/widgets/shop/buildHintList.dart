@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:MyFeveretClone/models/new_shop_model.dart';
 import 'dart:ui';
@@ -25,16 +26,28 @@ Widget buildHintList(List<NewShopModel> shops) {
                 offset: Offset(0, 3), // changes position of shadow
               ),
             ],
-            image: DecorationImage(
-                image: NetworkImage(
-                  shops[i].sellerItemPhoto,
-                ),
-                fit: BoxFit.cover),
           ),
           margin: EdgeInsets.only(left: 5, right: 5),
           width: 120,
           child: Stack(
             children: <Widget>[
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Container(
+                  height: 170,
+                  width: 120,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8),
+                    ),
+                  ),
+                  child: CachedNetworkImage(
+                    imageUrl: shops[i].sellerItemPhoto,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
               Positioned(
                 bottom: 0,
                 child: Container(
@@ -51,6 +64,21 @@ Widget buildHintList(List<NewShopModel> shops) {
                       shops[i].ezShopName,
                       maxLines: 4,
                       style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 5,
+                left: 5,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(25),
+                  child: Container(
+                    height: 50,
+                    width: 50,
+                    child: CachedNetworkImage(
+                      imageUrl: shops[i].sellerProfilePhoto,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),

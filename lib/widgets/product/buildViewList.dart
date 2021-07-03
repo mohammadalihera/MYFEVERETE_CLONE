@@ -1,4 +1,5 @@
 import 'package:MyFeveretClone/models/product_model.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 
@@ -32,42 +33,38 @@ Widget buildViewList(List<ProductModel> products, int number) {
             ),
             child: Column(
               children: <Widget>[
+                SizedBox(
+                  height: 10,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Container(
-                        margin: EdgeInsets.only(left: 5, right: 10, top: 10),
-                        height: 50,
-                        width: 50,
-                        decoration: showProduct[i].companyLogo != null
-                            ? BoxDecoration(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(25),
-                                ),
-                                image: DecorationImage(
-                                    image: NetworkImage(
-                                      showProduct[i].companyLogo,
-                                    ),
-                                    fit: BoxFit.cover),
-                              )
-                            : BoxDecoration(
-                                color: Colors.orange,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(25),
-                                ),
-                              ),
-                        child: showProduct[i].companyLogo != null
-                            ? SizedBox(
-                                height: 0,
-                              )
-                            : Center(
-                                child: Text(
-                                  showProduct[i].shopName[0],
-                                  style: TextStyle(
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              )),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(100),
+                      child: Container(
+                          height: 50,
+                          width: 50,
+                          color: Colors.orange,
+                          child: showProduct[i].companyLogo != null
+                              ? CachedNetworkImage(
+                                  imageUrl: showProduct[i].companyLogo,
+                                  fit: BoxFit.cover,
+                                )
+                              : Center(
+                                  child: Text(
+                                    showProduct[i].shopName[0],
+                                    style: TextStyle(
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                )),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
                     Container(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -107,7 +104,10 @@ Widget buildViewList(List<ProductModel> products, int number) {
                 Container(
                   width: MediaQuery.of(context).size.width,
                   height: 220,
-                  child: Image.network(showProduct[i].storyImage),
+                  child: CachedNetworkImage(
+                    imageUrl: showProduct[i].storyImage,
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 Container(
                   margin: EdgeInsets.only(left: 5),

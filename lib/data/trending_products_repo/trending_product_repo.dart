@@ -19,8 +19,6 @@ class TrendingProductRepoImpl extends TrendingProductRepo {
     if (response.statusCode == 200) {
       List<dynamic> body = json.decode(response.body);
       List<TrendingProductsModel> trendingProducts = getList(body[0]);
-      // var data = json.decode(response.body);
-      // List<TrendignSellersModel> sellers = trendignSellersModelFromJson(data);
       return trendingProducts;
     } else {
       throw Exception('Failed');
