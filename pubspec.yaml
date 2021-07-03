@@ -34,6 +34,7 @@ dependencies:
   http: ^0.12.0+4
   font_awesome_flutter: 8.8.1
   url_launcher: ^5.7.10
+  cached_network_image: ^2.5.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
